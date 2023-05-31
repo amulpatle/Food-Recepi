@@ -43,6 +43,22 @@ button[type="submit"] {
   border-radius: 10px;
 }
 
+form button[type="submit"] {
+  background-color: #f44336;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+  background-color: #ff5c5c;
+}
+
+.recipe-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
 /* responsive code */
 @media screen and (max-width: 600px) {
   header nav {
