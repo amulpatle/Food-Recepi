@@ -8,9 +8,10 @@ const fetchRecipes = async (query) => {
 `);
   const response = await data.json();
 
-  response.meals.foreach((meal) => {
+  response.meals.forEach((meal) => {
     console.log(meal);
   });
+  // console.log(response.meals[0]);
 };
 
 searchBtn.addEventListener("click", (e) => {
