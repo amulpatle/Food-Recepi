@@ -184,6 +184,17 @@ form button[type="submit"]:hover,
   --webkit-border-radius: 16px;
 }
 
+body::-webkit-scrollbar {
+  width: 16px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #a1a1a1;
+}
+body::-webkit-scrollbar-track {
+  background: #ebebeb;
+}
+
 /* responsive code */
 @media screen and (max-width: 600px) {
   header nav {
