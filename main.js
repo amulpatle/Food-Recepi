@@ -44,7 +44,7 @@ const fetchIngredients = (meal) => {
     const ingredient = meal[`strIngredient${i}`];
     if (ingredient) {
       const measure = meal[`strMeasure${i}`];
-      ingredientsList += `<li>${measure} ${ingredient}</li`;
+      ingredientsList += `<li>${measure} ${ingredient}</li>`;
     } else {
       break;
     }
@@ -54,12 +54,21 @@ const fetchIngredients = (meal) => {
 
 const openRecipepopup = (meal) => {
   recipeDetailsContent.innerHTML = `
-  <h2>${meal.strMeal}</h2>
+  <h2 class = "recipeName">${meal.strMeal}</h2>
   <h3>Ingredents:</h3>
-  <ul>${fetchIngredients(meal)}</ul>
+  <ul class = "ingredientList">${fetchIngredients(meal)}</ul>
+  <div>
+    <h3>Instructions:</h3>
+    <p class = "recipeInstructions">${meal.strInstructions}</p>
+  </div>;
   `;
+
   recipeDetailsContent.parentElement.style.display = "block";
 };
+
+recipeCloseBtn.addEventListener("click", () => {
+  recipeDetailsContent.parentElement.style.display = "none";
+});
 
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();

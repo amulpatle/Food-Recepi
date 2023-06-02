@@ -123,6 +123,21 @@ form button[type="submit"]:hover,
   height: 60%;
   font-size: 20px;
   background-color: #694c2f;
+
+  transition: all 0.5s ease-in-out;
+  overflow-y: scroll;
+}
+
+/* adding scrollBar to recipe details */
+
+.recipe-details::-webkit-scrollbar {
+  width: 10px;
+}
+
+.recipe-details::-webkit-scrollbar-thumb {
+  background: #b5b5ba;
+  border-radius: 16px;
+  --webkit-border-radius: 16px;
 }
 
 /* responsive code */
