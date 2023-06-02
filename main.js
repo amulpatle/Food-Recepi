@@ -7,33 +7,37 @@ const recipeCloseBtn = document.querySelector(".recipe-close-btn");
 //Function to get recipes
 const fetchRecipes = async (query) => {
   recipeContainer.innerHTML = "<h2>Fetching Recipes....</h2>";
-  const data =
-    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}
+  try {
+    const data =
+      await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}
 `);
-  const response = await data.json();
+    const response = await data.json();
 
-  recipeContainer.innerHTML = "";
-  response.meals.forEach((meal) => {
-    // console.log(meal);
-    const recipeDiv = document.createElement("div");
-    recipeDiv.classList.add("recipe");
-    recipeDiv.innerHTML = `
+    recipeContainer.innerHTML = "";
+    response.meals.forEach((meal) => {
+      // console.log(meal);
+      const recipeDiv = document.createElement("div");
+      recipeDiv.classList.add("recipe");
+      recipeDiv.innerHTML = `
     <img src = "${meal.strMealThumb}">
     <h3>${meal.strMeal}</h3>
     <p><span>${meal.strArea}</span> Dish</p>
     <p>Belongs to <span>${meal.strCategory}</span> Category</p>
     `;
 
-    const button = document.createElement("button");
-    button.textContent = "view Recipe";
-    recipeDiv.appendChild(button);
+      const button = document.createElement("button");
+      button.textContent = "view Recipe";
+      recipeDiv.appendChild(button);
 
-    //adding Eventlisterner to recipe button
-    button.addEventListener("click", () => {
-      openRecipepopup(meal);
+      //adding Eventlisterner to recipe button
+      button.addEventListener("click", () => {
+        openRecipepopup(meal);
+      });
+      recipeContainer.appendChild(recipeDiv);
     });
-    recipeContainer.appendChild(recipeDiv);
-  });
+  } catch (error) {
+    recipeContainer.innerHTML = "<h2>Error in Fetching Recipes....</h2>";
+  }
   // console.log(response.meals[0]);
 };
 
@@ -73,5 +77,9 @@ recipeCloseBtn.addEventListener("click", () => {
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const searchInput = searchBox.value.trim();
+  if (!searchInput) {
+    recipeContainer.innerHTML = `<h2>Type the meal in the search box.</h2>`;
+    return;
+  }
   fetchRecipes(searchInput);
 });
